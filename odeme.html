@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ödeme – EforHug</title>
+<link rel="stylesheet" href="/styles.css">
+<script src="/cart.js" defer></script>
+<style>
+  #whop-embedded-checkout { margin-top: 8px; border-radius: 6px; overflow: hidden; }
+</style>
+</head>
+<body>
+<div data-eh-header></div>
+<main>
+  <section id="empty-state" class="ck-empty" hidden>
+    <h1>Sepetin boş</h1>
+    <p>Bir paket seç, burada görünsün.</p>
+    <a href="/product">Alışverişe Devam Et</a>
+  </section>
+  <section id="checkout-state" class="ck-wrap">
+    <div>
+      <p id="error-message" class="ck-error" hidden></p>
+      <h1 style="font-size:22px;margin:0 0 12px">Kargo ve ödeme</h1>
+      <div id="embed-container" style="border:1px solid #ead9cc;border-radius:12px;background:#fff">
+        <div id="embed-placeholder" style="padding:16px;color:#8a7468">Ödeme hazırlanıyor…</div>
+      </div>
+    </div>
+    <aside class="ck-summary">
+      <h2 style="margin:0 0 12px;font-size:16px">Sipariş özeti</h2>
+      <ul id="summary-items" style="list-style:none;margin:0;padding:0"></ul>
+      <div style="display:flex;justify-content:space-between;margin-top:16px;font-size:14px"><span>Kargo</span><strong>ÜCRETSİZ</strong></div>
+      <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:18px;font-weight:800"><span>Toplam</span><span id="summary-total"></span></div>
+    </aside>
+  </section>
+</main>
+<div data-eh-footer></div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var C = window.EforHugCart
+  var items = C.getItems()
+  if (items.length === 0) {
+    document.getElementById('empty-state').hidden = false
+    document.getElementById('checkout-state').remove()
+    return
+  }
+  document.getElementById('summary-total').textContent = C.money(C.orderTotal())
+  var list = document.getElementById('summary-items')
+  items.forEach(function (line) {
+    var li = document.createElement('li')
+    li.style.cssText = 'display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #ead9cc'
+    if (line.type === 'powerbank') {
+      li.innerHTML = '<img src="/powerbank.webp" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:10px"><div style="flex:1"><strong>EforHug Uyumlu Powerbank</strong><p style="margin:4px 0 0;font-size:12px;color:#8a7468">Adet ' + (line.qty || 1) + '</p></div><span>' + C.money(C.POWERBANK_PRICE * (line.qty || 1)) + '</span>'
+    } else {
+      var pack = C.PACKS[line.packQty]
+      var img = C.COLOR_IMG[line.colors && line.colors[0]] || '/gri.webp'
+      var extra = line.includePowerbank ? ' + Powerbank' : ' · hediye powerbank'
+      li.innerHTML = '<img src="' + img + '" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:10px"><div style="flex:1"><strong>' + pack.label + '</strong><p style="margin:4px 0 0;font-size:12px;color:#8a7468">' + (line.colors || []).join(', ') + extra + '</p></div><span>' + C.money(pack.price + (line.includePowerbank ? C.POWERBANK_PRICE : 0)) + '</span>'
+    }
+    list.appendChild(li)
+  })
+
+  fetch('/api/checkout-session', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ lines: items }),
+  })
+    .then(async function (res) {
+      var contentType = res.headers.get('content-type') || ''
+      if (!contentType.includes('application/json')) {
+        throw new Error('Bu sayfa /api/checkout-session uç noktasına ulaşamıyor — bu dosyayı server.js ile birlikte kendi Node.js hosting\'inde çalıştırman gerekiyor (bkz. README.md).')
+      }
+      var json = await res.json()
+      if (!res.ok) throw new Error(json.error || 'Bilinmeyen hata')
+      var container = document.getElementById('embed-container')
+      container.innerHTML = ''
+      var embed = document.createElement('div')
+      embed.id = 'whop-embedded-checkout'
+      embed.setAttribute('data-whop-checkout-session', json.sessionId)
+      embed.setAttribute('data-whop-checkout-theme', 'light')
+      embed.setAttribute('data-whop-checkout-collect-shipping', 'true')
+      embed.setAttribute('data-whop-checkout-locale', 'tr')
+      embed.setAttribute('data-whop-checkout-return-url', window.location.origin + '/')
+      container.appendChild(embed)
+      var loader = document.createElement('script')
+      loader.src = 'https://js.whop.com/static/checkout/loader.js'
+      loader.async = true
+      document.body.appendChild(loader)
+    })
+    .catch(function (err) {
+      var errEl = document.getElementById('error-message')
+      errEl.textContent = err.message
+      errEl.hidden = false
+    })
+})
+</script>
+</body>
+</html>

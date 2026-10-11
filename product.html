@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EforHug™ Isıtmalı Battaniye</title>
+<link rel="stylesheet" href="/styles.css">
+<script src="/cart.js" defer></script>
+</head>
+<body>
+<div data-eh-header></div>
+<main class="eh-pd">
+  <div class="eh-hero">
+    <div>
+      <div class="eh-gallery-main"><img id="main-img" src="/g1.webp" alt="EforHug™ Isıtmalı Battaniye"></div>
+      <div class="eh-thumbs-wrap">
+        <div class="eh-thumbs" id="thumbs"></div>
+      </div>
+    </div>
+    <div>
+      <h1 class="eh-title">EforHug™ Isıtmalı Battaniye</h1>
+      <div class="eh-price-row">
+        <span class="eh-price" id="live-price">1,849.00TL</span>
+        <span class="eh-compare">3,760.00TL</span>
+        <span class="eh-badge">-51%İndirim</span>
+      </div>
+      <div class="eh-rating"><span class="eh-stars">★★★★☆</span><span>4.7 · 109 değerlendirme</span></div>
+      <ul class="eh-bullets">
+        <li>🔥  3 Isı Seviyesi — Isını kendine göre ayarla</li>
+        <li>🔋  8 Saate Kadar Isı — Uzun süre sıcak kal</li>
+        <li>☁️  Ultra Yumuşak — Yumuşacık polar konforu</li>
+        <li>🧥  Giyilebilir Tasarım — Ellerin serbestçe hareket etsin</li>
+      </ul>
+      <div class="eh-scarce">SON 6 ADET BATTANİYE</div>
+      <div class="eh-packs" id="packs"></div>
+      <div class="eh-gift" style="margin-top:12px">
+        <img src="/powerbank.webp" alt="">
+        <span>🎁 1 Adet EforHug Uyumlu Powerbank Hediye</span>
+        <span class="eh-gift-was">1,499.00TL</span>
+      </div>
+      <div class="eh-save">Bu pakette <strong id="save-amt">1,911TL</strong> tasarruf ediyorsun.</div>
+      <button type="button" class="eh-atc" id="atc">SEPETE EKLE</button>
+      <div class="eh-bump">
+        <img src="/powerbank.webp" alt="">
+        <div class="eh-bump-title">Ekstra Powerbank</div>
+        <div class="eh-bump-price">499.00TL<span class="eh-bump-was">1,499.00TL</span></div>
+        <button type="button" class="eh-toggle" id="pb-toggle" aria-pressed="false"><span></span></button>
+      </div>
+      <div class="eh-pay">
+        <img src="https://content.whop.com/payment_methods/visa/icons/card_light.svg" alt="Visa" height="30">
+        <img src="https://content.whop.com/payment_methods/mastercard/icons/card_light.svg" alt="Mastercard" height="30">
+        <img src="https://content.whop.com/payment_methods/amex/icons/card_light.svg" alt="American Express" height="30">
+      </div>
+      <div class="eh-faq">
+        <div class="eh-faq-item"><button type="button" class="eh-faq-btn">Elektrik çarpma riski var mı?<span>+</span></button><div class="eh-faq-a" hidden>Hayır. Ürün düşük voltajla çalışır ve TSE onaylıdır, güvenli kullanım için tasarlanmıştır.</div></div>
+        <div class="eh-faq-item"><button type="button" class="eh-faq-btn">Çamaşır makinesinde yıkayabilir miyim?<span>+</span></button><div class="eh-faq-a" hidden>Evet, yıkayabilirsiniz. Elektrik bağlantısını çıkardıktan sonra çamaşır makinesinde yıkanabilir.</div></div>
+        <div class="eh-faq-item"><button type="button" class="eh-faq-btn">Şarjlı mı, prize takılı mı kullanılıyor?<span>+</span></button><div class="eh-faq-a" hidden>Prize bağlı kullanmanız gerekmez. Powerbank ile çalışır, böylece evde, dışarıda veya yolculukta rahatça kullanabilirsiniz.</div></div>
+      </div>
+    </div>
+  </div>
+  <section class="eh-how-wrap">
+    <span class="eh-kicker">NASIL ÇALIŞIR</span>
+    <h2 class="eh-h2">Sıcaklık Elde Etmek Çok Kolay</h2>
+    <div class="eh-how">
+      <article class="eh-how-card"><img src="/how1.webp" alt=""><span class="eh-kicker">GÜCÜ BAĞLA</span><h3>Bağla ve Cebine Yerleştir</h3><p>USB bağlantısını uyumlu bir powerbank'e tak ve güç kaynağını ürünün iç cebine güvenle yerleştir.</p></article>
+      <article class="eh-how-card"><img src="/how2.webp" alt=""><span class="eh-kicker">SICAKLIĞINI SEÇ</span><h3>Isıyı Kendine Göre Ayarla</h3><p>Tek tuşla 3 farklı ısı seviyesinden sana en uygun olanı seç.</p></article>
+      <article class="eh-how-card"><img src="/how3.webp" alt=""><span class="eh-kicker">SARIN VE HAREKET ET</span><h3>Seninle Birlikte Hareket Eden Sıcaklık</h3><p>Giyilebilir yapısı sayesinde evde veya dışarıda rahatça hareket ederken sıcak kal.</p></article>
+    </div>
+  </section>
+</main>
+<div id="color-modal" class="eh-color-overlay" hidden>
+  <div class="eh-color-modal">
+    <div class="eh-color-head"><div><h2>Renk seçin</h2><p id="color-sub"></p></div><button type="button" class="eh-color-x" id="color-x">×</button></div>
+    <div class="eh-color-list" id="color-list"></div>
+    <button type="button" class="eh-color-confirm" id="color-ok">SEPETE EKLE</button>
+  </div>
+</div>
+<div data-eh-footer></div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var C = window.EforHugCart
+  var packQty = 1
+  var color = 'Gri'
+  var includePb = false
+  var gallery = ['/g1.webp','/g2.webp','/g3.webp','/g4.webp','/gri.webp']
+  var thumbs = document.getElementById('thumbs')
+  gallery.forEach(function (src, i) {
+    var b = document.createElement('button')
+    b.type = 'button'
+    b.className = 'eh-thumb' + (i === 0 ? ' is-on' : '')
+    b.innerHTML = '<img src="' + src + '" alt="">'
+    b.onclick = function () {
+      document.getElementById('main-img').src = src
+      thumbs.querySelectorAll('.eh-thumb').forEach(function (el) { el.classList.remove('is-on') })
+      b.classList.add('is-on')
+    }
+    thumbs.appendChild(b)
+  })
+
+  function moneyInt(n) {
+    return Math.round(n).toLocaleString('tr-TR') + 'TL'
+  }
+  function swatches(selected, onPick) {
+    return C.COLORS.map(function (v) {
+      return '<button type="button" class="eh-swatch' + (v === selected ? ' is-on' : '') + '" data-color="' + v + '"><span class="eh-swatch-dot" style="background:' + (v === 'Pembe' ? '#e7a4b5' : '#8f8c88') + '"></span>' + v + '</button>'
+    }).join('')
+  }
+  function renderPacks() {
+    var el = document.getElementById('packs')
+    var packs = [
+      { qty: 1, name: '1 Adet Isıtmalı Battaniye', tag: 'Standart', tagClass: 'eh-pack-tag', img: C.COLOR_IMG[color], price: C.PACKS[1].price, was: C.PACKS[1].compare, sub: null },
+      { qty: 2, name: '2 Adet Isıtmalı Battaniye', tag: '♥EN POPÜLER', tagClass: 'eh-pack-tag hot', img: '/pack2.avif', price: C.PACKS[2].price, was: C.PACKS[2].compare, sub: '%10 Ek Paket İndirimi' },
+      { qty: 3, name: '3 Adet Isıtmalı Battaniye', tag: '★EN AVANTAJLI', tagClass: 'eh-pack-tag dark', img: '/pack3.avif', price: C.PACKS[3].price, was: C.PACKS[3].compare, sub: '%15 Ek Paket İndirimi' },
+    ]
+    el.innerHTML = packs.map(function (p) {
+      return '<div class="eh-pack' + (packQty === p.qty ? ' is-on' : '') + '" data-pack="' + p.qty + '">' +
+        '<span class="' + p.tagClass + '">' + p.tag + '</span>' +
+        '<img src="' + p.img + '" alt="">' +
+        '<span><span class="eh-pack-name">' + p.name + '</span>' +
+        (p.sub ? '<span class="eh-pack-sub">' + p.sub + '</span>' : '') +
+        (p.qty === 1 ? '<span class="eh-swatches">' + swatches(color) + '</span>' : '') +
+        '</span><span class="eh-pack-price">' + C.money(p.price) + '<span class="eh-pack-was">' + moneyInt(p.was) + '</span></span></div>'
+    }).join('')
+    var pack = C.PACKS[packQty]
+    document.getElementById('save-amt').textContent = C.money(pack.compare - pack.price)
+    document.getElementById('live-price').textContent = C.money(pack.price)
+  }
+  renderPacks()
+  document.getElementById('packs').addEventListener('click', function (e) {
+    var sw = e.target.closest('[data-color]')
+    if (sw) {
+      e.stopPropagation()
+      color = sw.getAttribute('data-color')
+      document.getElementById('main-img').src = C.COLOR_IMG[color]
+      renderPacks()
+      return
+    }
+    var p = e.target.closest('[data-pack]')
+    if (!p) return
+    packQty = Number(p.getAttribute('data-pack'))
+    renderPacks()
+  })
+  document.getElementById('pb-toggle').addEventListener('click', function () {
+    includePb = !includePb
+    this.classList.toggle('is-on', includePb)
+    this.setAttribute('aria-pressed', includePb ? 'true' : 'false')
+  })
+  document.querySelectorAll('.eh-faq-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var a = btn.nextElementSibling
+      a.hidden = !a.hidden
+    })
+  })
+
+  var pendingColors = []
+  function openColorModal() {
+    var pack = C.PACKS[packQty]
+    pendingColors = []
+    for (var i = 0; i < pack.qty; i += 1) pendingColors.push(color)
+    document.getElementById('color-sub').textContent = pack.qty + ' Adet Isıtmalı Battaniye'
+    drawColorList()
+    document.getElementById('color-modal').hidden = false
+  }
+  function drawColorList() {
+    document.getElementById('color-list').innerHTML = pendingColors.map(function (c, i) {
+      return '<div class="eh-color-row"><img src="' + C.COLOR_IMG[c] + '" alt=""><div><span class="eh-color-label">' + (i + 1) + '. Battaniye</span><span class="eh-swatches">' +
+        C.COLORS.map(function (v) {
+          return '<button type="button" class="eh-swatch' + (v === c ? ' is-on' : '') + '" data-unit="' + i + '" data-color="' + v + '"><span class="eh-swatch-dot" style="background:' + (v === 'Pembe' ? '#e7a4b5' : '#8f8c88') + '"></span>' + v + '</button>'
+        }).join('') + '</span></div></div>'
+    }).join('')
+  }
+  document.getElementById('color-list').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-unit]')
+    if (!b) return
+    pendingColors[Number(b.getAttribute('data-unit'))] = b.getAttribute('data-color')
+    drawColorList()
+  })
+  document.getElementById('color-x').onclick = function () {
+    document.getElementById('color-modal').hidden = true
+  }
+  document.getElementById('color-modal').addEventListener('click', function (e) {
+    if (e.target.id === 'color-modal') document.getElementById('color-modal').hidden = true
+  })
+  document.getElementById('color-ok').onclick = function () {
+    C.addBlanket(packQty, pendingColors, includePb)
+    document.getElementById('color-modal').hidden = true
+  }
+  document.getElementById('atc').onclick = function () {
+    if (packQty === 1) C.addBlanket(1, [color], includePb)
+    else openColorModal()
+  }
+})
+</script>
+</body>
+</html>

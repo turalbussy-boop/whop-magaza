@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sipariş takibi – EforHug</title>
+<link rel="stylesheet" href="/styles.css">
+<script src="/cart.js" defer></script>
+</head>
+<body>
+<div data-eh-header></div>
+<main class="eh-page">
+  <h1>Siparişinizi Takip Edin</h1>
+  <p>Ödeme referansınız (`pay_…`) ve siparişte kullandığınız e-posta ile sorgulayın.</p>
+  <form class="track-form" id="track-form">
+    <input name="orderId" required placeholder="pay_xxxxxxxxxxxx" autocomplete="off">
+    <input name="email" type="email" required placeholder="E-posta">
+    <button type="submit">Sorgula</button>
+  </form>
+  <div id="track-result" class="track-result" hidden></div>
+</main>
+<div data-eh-footer></div>
+<script>
+document.getElementById('track-form').addEventListener('submit', function (event) {
+  event.preventDefault()
+  var fd = new FormData(event.target)
+  var box = document.getElementById('track-result')
+  box.hidden = false
+  box.textContent = 'Sorgulanıyor…'
+  fetch('/api/track-order', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ orderId: fd.get('orderId'), email: fd.get('email') }),
+  })
+    .then(function (res) { return res.json() })
+    .then(function (json) {
+      if (!json.found) {
+        box.textContent = 'Sipariş bulunamadı. Referansı ve e-postayı kontrol edin.'
+        return
+      }
+      var ship = json.shipment && json.shipment.trackingNumber
+        ? ('Kargo: ' + json.shipment.trackingNumber)
+        : (json.manualStatusLabel || 'Hazırlanıyor')
+      box.innerHTML = '<p><strong>Durum:</strong> ' + json.status + '</p><p>' + ship + '</p>'
+    })
+    .catch(function () {
+      box.textContent = 'Şu an sorgulanamadı. Biraz sonra tekrar deneyin.'
+    })
+})
+</script>
+</body>
+</html>

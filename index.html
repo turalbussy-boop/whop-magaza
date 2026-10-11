@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EforHug</title>
+<link rel="stylesheet" href="/styles.css">
+<script src="/cart.js" defer></script>
+</head>
+<body>
+<div data-eh-header></div>
+<main>
+  <a class="eh-home-hero" href="/product">
+    <img src="/hero.webp" alt="SICAKLIK ARTIK SENİNLE">
+  </a>
+  <div class="eh-ticker"><div class="eh-ticker-track" id="home-ticker">
+    <span>Memnuniyet Garantisi</span>
+    <span>Aşkınız Gibi Sonsuz!</span>
+    <span>2. Ürüne +%10 İndirim!</span>
+  </div></div>
+  <section class="eh-wave">
+    <h2>SICAKLIK ARTIK SENİNLE</h2>
+    <div class="eh-wave-row">
+      <span>MEMNUNİYET GARANTİSİ</span>
+      <span>%100 PARA İADE GARANTİSİ</span>
+      <span>+1000 MUTLU MÜŞTERİ</span>
+    </div>
+  </section>
+  <section class="eh-trust">
+    <article>
+      <h3>Ücretsiz Kargo</h3>
+      <p>Ürünlerimizi Türkiye'nin her yerine ücretsiz ve mümkün olan en hızlı şekilde gönderiyoruz.</p>
+    </article>
+    <article>
+      <h3>100% Güvenli Ödeme</h3>
+      <p>Ödemeleriniz %100 güvenli ve şifrelidir. MasterCard, Visa tarafından korunmaktadır.</p>
+    </article>
+    <article>
+      <h3>İade Garantisi</h3>
+      <p>Herhangi bir kusurlu ürün veya sorun olması durumunda bizimle iletişime geçmekten çekinmeyin!</p>
+    </article>
+  </section>
+</main>
+<div data-eh-footer></div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var t = document.getElementById('home-ticker')
+  if (t) t.innerHTML += t.innerHTML
+})
+</script>
+</body>
+</html>
